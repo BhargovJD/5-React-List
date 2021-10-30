@@ -1,3 +1,1 @@
-List loop
-Toggle items
-Delete items
+Getting Form Value In Console.

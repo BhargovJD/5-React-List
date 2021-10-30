@@ -1,4 +1,5 @@
 import Person from './components/Person'
+import Form from './components/Form';
 
 import React, { Component } from 'react'
 
@@ -56,6 +57,9 @@ export class App extends Component {
     });
 
     return <div>
+      <h3>Form</h3>
+      <Form/>
+
       <h3>List Loop</h3>
       <button onClick={this.toggleHandler}>Toggle</button>
 
