@@ -1,25 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import Person from './components/Person'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import React, { Component } from 'react'
+
+export class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      person: [
+        {
+          id: 1,
+          name: "Bhargov",
+          age: "25"
+        },
+
+        {
+          id: 2,
+          name: "Das",
+          age: "25"
+        },
+        {
+          id: 3,
+          name: "ABC",
+          age: "25"
+        }
+      ],
+
+      isShow:true,
+    }
+
+    this.toggleHandler = this.toggleHandler.bind(this)
+
+  }
+
+
+  toggleHandler(){
+    // alert("Alert")
+
+    this.setState({isShow:!this.state.isShow});
+  }
+
+  removeHandler = (personIndex)=>{
+    // alert(personIndex)
+    const personCopy = this.state.person;
+    personCopy.splice(personIndex,1);
+    this.setState({person:personCopy})
+
+  }
+
+  render() {
+
+    let persons;
+    persons = this.state.person.map((p,index) => {
+      return <Person key={index} id={p.id} name={p.name} age={p.age} remove={()=>this.removeHandler(index)} />
+    });
+
+    return <div>
+      <h3>List Loop</h3>
+      <button onClick={this.toggleHandler}>Toggle</button>
+
+      {
+        this.state.isShow===true?persons:""
+
+      }
     </div>
-  );
+
+  }
 }
 
-export default App;
+export default App
+
